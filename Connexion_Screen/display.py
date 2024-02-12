@@ -8,13 +8,15 @@ class Display():
         pygame.display.set_caption('Discord')
         self.text = cs.Text(self)
         self.picutre = cs.Picture(self)
+        self.screen_display = cs.Connexion_Screen_display(self)
+        self.state = "Inscription"
 
 
-    def update(self):
-        pygame.display.update()
+
 
     def get_screen(self):
         return self.screen
+
 
     def run(self):
         while True:
@@ -22,9 +24,11 @@ class Display():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
-            self.screen.fill("White")
-            self.text.draw_text("Discord",10, 400, 300)
-            self.picutre.draw_picture("Asset\image\Serveur_Discord.png", 300, 500, 50, 100)
-            self.update()
+            if self.state == "Connexion":
+                self.screen_display.screen_connection()
+            elif self.state == "Inscription":
+                self.screen_display.screen_inscription()
+            
+            
     
     

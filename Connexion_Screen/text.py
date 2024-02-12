@@ -6,6 +6,7 @@ class Text(Display):
         self.display = display
         self.screen = self.display.screen
         
+        
     def draw_text(self,text,taille,x,y):
         self.font = pygame.font.Font('freesansbold.ttf', taille)
         self.config_text = self.font.render(text, True, (0, 0, 0))

@@ -4,10 +4,11 @@ import Connexion_Screen as cs
 
 class Display():
     def __init__(self):
-        self.text = cs.Text()
-        self.picutre = cs.Picture()
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption('Discord')
+        self.text = cs.Text(self)
+        self.picutre = cs.Picture(self)
+
 
     def update(self):
         pygame.display.update()
@@ -22,8 +23,8 @@ class Display():
                     pygame.quit()
                     quit()
             self.screen.fill("White")
-            self.text.draw_text(self.screen,"Discord",10, 400, 300)
-            self.picutre.draw_picture(self.screen, "Asset\image\Serveur_Discord.png", 300, 500, 50, 100)
+            self.text.draw_text("Discord",10, 400, 300)
+            self.picutre.draw_picture("Asset\image\Serveur_Discord.png", 300, 500, 50, 100)
             self.update()
     
     

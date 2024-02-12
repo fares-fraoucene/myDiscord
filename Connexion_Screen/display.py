@@ -9,11 +9,11 @@ class Display():
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption('Discord')
 
-    # def update(self):
-    #     pygame.display.update()
+    def update(self):
+        pygame.display.update()
 
-    # def get_screen(self):
-    #     return self.screen
+    def get_screen(self):
+        return self.screen
 
     def run(self):
         while True:

@@ -42,3 +42,5 @@ class Connexion_Screen_display():
         self.text.draw_text("Prénom :","Black", 15, 250, 400)
         self.button.draw_button(290, 470, 200, 50, "White", "Inscription", "Black", 17)
         self.update()
+        
+    

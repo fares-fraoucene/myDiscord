@@ -9,17 +9,19 @@ class Display():
         self.text = cs.Text(self)
         self.picutre = cs.Picture(self)
         self.screen_display = cs.Connexion_Screen_display(self)
-        self.button = cs.Button(self) 
+        self.button = cs.Button(self)
     def run(self):
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            for self.event in pygame.event.get():
+                if self.event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
             if self.screen_display.get_state() == 1:
                 self.screen_display.screen_connection()
             elif self.screen_display.get_state() == 2:
-                self.screen_display.screen_inscription()
+                self.screen_display.screen_inscription()   
+    def get_event(self):
+        return self.event
 
             
             

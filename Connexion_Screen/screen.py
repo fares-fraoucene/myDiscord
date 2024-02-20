@@ -13,9 +13,6 @@ class Connexion_Screen_display():
         pygame.display.update()
     def get_state(self):
         return self.state
-    def change_state(self, state):
-        self.state = state
-        return self.state
     def go_screen_connexion(self):
         self.state = 1
     def go_screen_inscription(self):
@@ -26,7 +23,6 @@ class Connexion_Screen_display():
         self.button.draw_button(200, 140, 200, 50, "White", "Connexion", "Black", 15, self.go_screen_connexion)
         self.button.draw_button(400, 140, 200, 50, "White", "Inscription", "Black", 15, self.go_screen_inscription)
         
-
     def screen_connection(self):
         self.main_screen()
         self.text.draw_text("Adresse email :","Black", 15, 250, 220)

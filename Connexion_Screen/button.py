@@ -21,7 +21,7 @@ class Button:
                 time.sleep(0.2)
                 self.button_clicked = False
         else:
-            self.button_clicked = False 
+            self.button_clicked = False
     
 
 

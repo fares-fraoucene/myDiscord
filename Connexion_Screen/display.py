@@ -23,6 +23,8 @@ class Display():
                 self.screen_display.screen_inscription()  
             elif self.screen_display.get_state() == 3:
                 self.screen_display.private_mesage()
+            elif self.screen_display.get_state() == 4:
+                self.screen_display.public_message()
     def get_event(self):
         return self.event
 

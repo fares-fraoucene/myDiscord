@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 3
+        self.state = 4
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -19,6 +19,10 @@ class Connexion_Screen_display():
         self.state = 1
     def go_screen_inscription(self):
         self.state = 2
+    def go_screen_private_message(self):
+        self.state = 3
+    def go_screen_public_message(self):
+        self.state = 4
     def main_screen(self):
         self.screen.fill("gray23")
         self.picture.draw_picture("Asset\image\Serveur_Discord.png", 200, 20, 100, 400)
@@ -26,8 +30,8 @@ class Connexion_Screen_display():
         self.button.draw_button(400, 140, 200, 50, "gray23", "Inscription", "ghostwhite", 15, self.go_screen_inscription)
     def main_message_screen(self):
         self.screen.fill("gray23")
-        self.button.draw_button(200, 200, 200, 50, "gray23", "Message Privé", "ghostwhite", 15, None)
-        self.button.draw_button(400, 200, 200, 50, "gray23", "Message Général", "ghostwhite", 15, None)
+        self.button.draw_button(250, 30, 200, 50, "gray23", "Message Privé", "ghostwhite", 15, self.go_screen_private_message)
+        self.button.draw_button(450, 30, 200, 50, "gray23", "Message Général", "ghostwhite", 15, self.go_screen_public_message)
         
     def screen_connection(self):
         self.main_screen()
@@ -53,11 +57,13 @@ class Connexion_Screen_display():
 
     def private_mesage(self):
         self.main_message_screen()
-        self.text.draw_text("Nom du destinataire","ghostwhite", 15, 50, 50)
-        self.text.draw_text("Message :","ghostwhite", 15, 50, 500)
+        self.text.draw_text("Amis","ghostwhite", 15, 50, 50)
+        self.shapes.draw_rect(20, 100, 140, 400, "ghostwhite")
+        self.text.draw_text("Message :","ghostwhite", 15, 200, 520)
         self.text.area_text(200, 550, 500, 25, "ghostwhite")
-        self.shapes.draw_rounded_rect(200, 100, 500, 400,"ghostwhite", 10)
+        self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.update()
+
         
     

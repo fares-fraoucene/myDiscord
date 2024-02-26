@@ -22,8 +22,12 @@ class Connexion_Screen_display():
     def main_screen(self):
         self.screen.fill("gray23")
         self.picture.draw_picture("Asset\image\Serveur_Discord.png", 200, 20, 100, 400)
-        self.button.draw_button(200, 140, 200, 50, "gray23", "Connexion", "ghostwhite", 15, self.go_screen_connexion())
+        self.button.draw_button(200, 140, 200, 50, "gray23", "Connexion", "ghostwhite", 15, self.go_screen_connexion)
         self.button.draw_button(400, 140, 200, 50, "gray23", "Inscription", "ghostwhite", 15, self.go_screen_inscription)
+    def main_message_screen(self):
+        self.screen.fill("gray23")
+        self.button.draw_button(200, 200, 200, 50, "gray23", "Message Privé", "ghostwhite", 15, None)
+        self.button.draw_button(400, 200, 200, 50, "gray23", "Message Général", "ghostwhite", 15, None)
         
     def screen_connection(self):
         self.main_screen()
@@ -48,12 +52,12 @@ class Connexion_Screen_display():
         self.update()
 
     def private_mesage(self):
-        self.screen.fill("gray23")
+        self.main_message_screen()
         self.text.draw_text("Nom du destinataire","ghostwhite", 15, 50, 50)
         self.text.draw_text("Message :","ghostwhite", 15, 50, 500)
         self.text.area_text(200, 550, 500, 25, "ghostwhite")
-        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17)
-        self.shapes.draw_rect(50, 100, 200, 400, "ghostwhite")
+        self.shapes.draw_rounded_rect(200, 100, 500, 400,"ghostwhite", 10)
+        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.update()
         
     

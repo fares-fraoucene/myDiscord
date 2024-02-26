@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 4
+        self.state = 3
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -37,7 +37,7 @@ class Connexion_Screen_display():
         self.main_screen()
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
         self.text.draw_text("Mot de Passe :", "ghostwhite",15, 250, 280)
-        self.button.draw_button(290, 350, 200, 50, "gray23", "Connexion", "ghostwhite", 17)
+        self.button.draw_button(290, 350, 200, 50, "gray23", "Connexion", "ghostwhite", 17, self.go_screen_private_message)
         self.text.area_text(250, 240, 300, 25, "ghostwhite")
         self.text.area_text(250, 300, 300, 25, "ghostwhite")
         self.update()
@@ -63,12 +63,13 @@ class Connexion_Screen_display():
         self.text.area_text(200, 550, 500, 25, "ghostwhite")
         self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
+        self.text.draw_text("Appel","Black", 15, 680, 110)
         self.update()
     def public_message(self):
         self.main_message_screen()
-        self.text.draw_text("Message :","ghostwhite", 15, 200, 520)
-        self.text.area_text(50, 550, 500, 25, "ghostwhite")
-        self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
+        self.text.draw_text("Message :","ghostwhite", 15, 60, 520)
+        self.text.area_text(50, 550, 700, 25, "ghostwhite")
+        self.shapes.draw_rect(50, 100, 700, 400, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.update()
         

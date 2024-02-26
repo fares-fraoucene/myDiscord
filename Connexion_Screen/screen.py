@@ -64,6 +64,12 @@ class Connexion_Screen_display():
         self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.update()
-
+    def public_message(self):
+        self.main_message_screen()
+        self.text.draw_text("Message :","ghostwhite", 15, 200, 520)
+        self.text.area_text(50, 550, 500, 25, "ghostwhite")
+        self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
+        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
+        self.update()
         
     

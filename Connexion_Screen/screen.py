@@ -32,7 +32,7 @@ class Connexion_Screen_display():
         self.screen.fill("gray23")
         self.button.draw_button(250, 30, 200, 50, "gray23", "Message Privé", "ghostwhite", 15, self.go_screen_private_message)
         self.button.draw_button(450, 30, 200, 50, "gray23", "Message Général", "ghostwhite", 15, self.go_screen_public_message)
-        
+        self.button.draw_button(30, 540, 100, 50, "gray23", "Déconnexion", "ghostwhite", 15, self.go_screen_connexion)
     def screen_connection(self):
         self.main_screen()
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
@@ -67,8 +67,8 @@ class Connexion_Screen_display():
         self.update()
     def public_message(self):
         self.main_message_screen()
-        self.text.draw_text("Message :","ghostwhite", 15, 60, 520)
-        self.text.area_text(50, 550, 700, 25, "ghostwhite")
+        self.text.draw_text("Message :","ghostwhite", 15, 150, 520)
+        self.text.area_text(150, 550, 500, 25, "ghostwhite")
         self.shapes.draw_rect(50, 100, 700, 400, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.update()

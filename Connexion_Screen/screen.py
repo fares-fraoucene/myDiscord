@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 1
+        self.state = 3
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -44,6 +44,14 @@ class Connexion_Screen_display():
         self.text.area_text(250, 300, 300, 25, "ghostwhite")
         self.text.area_text(250, 360, 300, 25, "ghostwhite")
         self.text.area_text(250, 420, 300, 25, "ghostwhite")
+        self.update()
+
+    def private_mesage(self):
+        self.screen.fill("gray23")
+        self.text.draw_text("Nom du destinataire","ghostwhite", 15, 50, 50)
+        self.text.draw_text("Message :","ghostwhite", 15, 50, 500)
+        self.text.area_text(200, 550, 500, 25, "ghostwhite")
+        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17)
         self.update()
         
     

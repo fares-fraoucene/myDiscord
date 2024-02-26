@@ -9,6 +9,7 @@ class Connexion_Screen_display():
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
+        self.shapes = tools.Shapes(self.display)
         
     def update(self):
         pygame.display.update()
@@ -52,6 +53,7 @@ class Connexion_Screen_display():
         self.text.draw_text("Message :","ghostwhite", 15, 50, 500)
         self.text.area_text(200, 550, 500, 25, "ghostwhite")
         self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17)
+        self.shapes.draw_rect(50, 100, 200, 400, "ghostwhite")
         self.update()
         
     

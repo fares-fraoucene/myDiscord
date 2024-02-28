@@ -1,3 +1,3 @@
-from Connexion_Screen import Display
+from Screen import Display
 discord = Display()
 discord.run()

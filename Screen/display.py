@@ -1,6 +1,7 @@
 import pygame 
 import Tools as tools
 import Screen as cs
+import Base_sql as base
 
 
 class Display():
@@ -27,8 +28,7 @@ class Display():
         self.text_area_chat_public = ''
         self.text_area_chat_private_rect = pygame.Rect(200, 550, 500, 25)
         self.text_area_chat_public_rect = pygame.Rect(150, 550, 500, 25)
-
-
+        self.base = base
         
     def run(self):
         while True:
@@ -36,6 +36,14 @@ class Display():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.pos = pygame.mouse.get_pos()
+                    if 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500:
+                        self.base.inserer_utilisateur(self.text_area_surname_inscription, self.text_area_name_inscription, self.text_area_email_insription, self.text_area_password_inscription)
+                        self.text_area_surname_inscription = ''
+                        self.text_area_name_inscription = ''
+                        self.text_area_email_insription = ''
+                        self.text_area_password_inscription = ''
                 if event.type == pygame.KEYDOWN:
                     if self.text_area_email_active == True and self.screen_display.get_state() == 1:
                         if event.key == pygame.K_RETURN:

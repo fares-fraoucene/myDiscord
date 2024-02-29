@@ -12,6 +12,9 @@ class Text():
         self.config_text = self.font.render(text, True, color)
         self.draw = self.screen.blit(self.config_text, (x, y))
         return self.draw
+    def draw_text_area_text(self,text):
+        draw = self.font.render(text, True, (0, 0, 0))
+        return draw
     
 
     def area_text(self,x,y,width,height,color):

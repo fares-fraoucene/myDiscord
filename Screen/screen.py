@@ -44,6 +44,8 @@ class Connexion_Screen_display():
         self.button.draw_button(290, 350, 200, 50, "gray23", "Connexion", "ghostwhite", 17, self.go_screen_private_message)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_email_connexion)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_email_connexion),(250,240))
+        pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_password_connexion)
+        self.screen.blit(self.text.draw_text_area_text(self.display.text_area_password_connexion),(250,300))
         self.update()
 
     def screen_inscription(self):

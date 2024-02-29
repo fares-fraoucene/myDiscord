@@ -4,7 +4,7 @@ class Text():
         pygame.font.init()
         self.display = display
         self.screen = self.display.screen
-        
+        self.font = pygame.font.Font('freesansbold.ttf')
         
         
     def draw_text(self,text,color,taille,x,y):
@@ -12,6 +12,7 @@ class Text():
         self.config_text = self.font.render(text, True, color)
         self.draw = self.screen.blit(self.config_text, (x, y))
         return self.draw
+    
     def draw_text_area_text(self,text):
         draw = self.font.render(text, True, (0, 0, 0))
         return draw

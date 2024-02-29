@@ -14,6 +14,8 @@ class Display():
         self.text_area_email_connexion = ''
         self.text_area_password_connexion = ''
         self.text_area_rect_email_connexion = pygame.Rect(250, 240, 300, 25)
+        self.text_area_rect_password_connexion = pygame.Rect(250, 300, 300, 25)
+        
     def run(self):
         while True:
             for event in pygame.event.get():
@@ -21,19 +23,30 @@ class Display():
                     pygame.quit()
                     quit()
                 if event.type == pygame.KEYDOWN:
-                    if self.screen_display == 1:
-                        if self.text_area_email_active == True:
-                            if event.key == pygame.K_RETURN:
-                                print("Text Area 5:", self.text_area_email_connexion)
-                            if event.type == pygame.K_BACKSPACE:
-                                self.text_area_email_connexion = self.text_area_email_connexion[:-1]
-                            else:
-                                self.text_area_email_connexion += event.unicode
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            if self.is_mouse_inside_text_area(self.text_area_rect_email_connexion):
-                                self.text_area_email_active = True
-                                self.text_area_password_active = False
-                        
+                    if self.text_area_email_active == True and self.screen_display.get_state() == 1:
+                        if event.key == pygame.K_RETURN:
+                            print(self.text_area_email_connexion)
+                            self.text_area_email_connexion = ''
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.text_area_email_connexion = self.text_area_email_connexion[:-1]
+                        else:
+                            self.text_area_email_connexion += event.unicode
+                    elif self.text_area_password_active == True and self.screen_display.get_state() == 1:
+                        if event.key == pygame.K_RETURN:
+                            print(self.text_area_password_connexion)
+                            self.text_area_password_connexion = ''
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.text_area_password_connexion = self.text_area_password_connexion[:-1]
+                        else:
+                            self.text_area_password_connexion += event.unicode
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.is_mouse_inside_text_area(self.text_area_rect_email_connexion):
+                        self.text_area_email_active = True
+                        self.text_area_password_active = False
+                    elif self.is_mouse_inside_text_area(self.text_area_rect_password_connexion):
+                        self.text_area_email_active = False
+                        self.text_area_password_active = True
+                    
             if self.screen_display.get_state() == 1:
                 self.screen_display.screen_connection()
             elif self.screen_display.get_state() == 2:
@@ -46,8 +59,8 @@ class Display():
         return self.event
     
     def is_mouse_inside_text_area(self, rect):
-        mouse_pos = pygame.mouse.get_pos()
-        return rect.collidepoint(mouse_pos)
+        self.mouse_pos = pygame.mouse.get_pos()
+        return rect.collidepoint(self.mouse_pos)
 
 
             

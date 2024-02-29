@@ -23,6 +23,10 @@ class Display():
         self.text_area_rect_surname_inscription = pygame.Rect(250, 420, 300, 25)
         self.text_area_rect_password_inscription = pygame.Rect(250, 300, 300, 25)
         self.text_area_rect_email_inscription = pygame.Rect(250, 240, 300, 25)
+        self.text_area_chat_private = ''
+        self.text_area_chat_public = ''
+        self.text_area_chat_private_rect = pygame.Rect(200, 550, 500, 25)
+        self.text_area_chat_public_rect = pygame.Rect(150, 550, 500, 25)
 
 
         
@@ -81,6 +85,22 @@ class Display():
                             self.text_area_email_insription = self.text_area_email_insription[:-1]
                         else:
                             self.text_area_email_insription += event.unicode
+                    elif self.text_area_chat_private_active == True and self.screen_display.get_state() == 3:
+                        if event.key == pygame.K_RETURN:
+                            print(self.text_area_chat_private)
+                            self.text_area_chat_private = ''
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.text_area_chat_private = self.text_area_chat_private[:-1]
+                        else:
+                            self.text_area_chat_private += event.unicode
+                    elif self.text_area_chat_public_active == True and self.screen_display.get_state() == 4:
+                        if event.key == pygame.K_RETURN:
+                            print(self.text_area_chat_public)
+                            self.text_area_chat_public = ''
+                        elif event.key == pygame.K_BACKSPACE:
+                            self.text_area_chat_public = self.text_area_chat_public[:-1]
+                        else:
+                            self.text_area_chat_public += event.unicode
                     
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.is_mouse_inside_text_area(self.text_area_rect_email_connexion) and self.screen_display.get_state() == 1:
@@ -90,6 +110,8 @@ class Display():
                         self.text_area_surname_active = False
                         self.text_area_password_inscription_active = False
                         self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
                     elif self.is_mouse_inside_text_area(self.text_area_rect_password_connexion) and self.screen_display.get_state() == 1:
                         self.text_area_email_active = False
                         self.text_area_password_active = True
@@ -97,6 +119,8 @@ class Display():
                         self.text_area_surname_active = False
                         self.text_area_password_inscription_active = False
                         self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
                     elif self.is_mouse_inside_text_area(self.text_area_rect_name_inscription) and self.screen_display.get_state() == 2:
                         self.text_area_email_active = False
                         self.text_area_password_active = False
@@ -104,6 +128,8 @@ class Display():
                         self.text_area_surname_active = False
                         self.text_area_password_inscription_active = False
                         self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
                     elif self.is_mouse_inside_text_area(self.text_area_rect_surname_inscription) and self.screen_display.get_state() == 2:
                         self.text_area_email_active = False
                         self.text_area_password_active = False
@@ -111,6 +137,8 @@ class Display():
                         self.text_area_surname_active = True
                         self.text_area_password_inscription_active = False
                         self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
                     elif self.is_mouse_inside_text_area(self.text_area_rect_password_inscription) and self.screen_display.get_state() == 2:
                         self.text_area_email_active = False
                         self.text_area_password_active = False
@@ -118,6 +146,8 @@ class Display():
                         self.text_area_surname_active = False
                         self.text_area_password_inscription_active = True
                         self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
                     elif self.is_mouse_inside_text_area(self.text_area_rect_email_inscription) and self.screen_display.get_state() == 2:
                         self.text_area_email_active = False
                         self.text_area_password_active = False
@@ -125,6 +155,26 @@ class Display():
                         self.text_area_surname_active = False
                         self.text_area_password_inscription_active = False
                         self.text_area_email_inscription_active = True
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
+                    elif self.is_mouse_inside_text_area(self.text_area_chat_private_rect) and self.screen_display.get_state() == 3:
+                        self.text_area_email_active = False
+                        self.text_area_password_active = False
+                        self.text_area_name_active = False
+                        self.text_area_surname_active = False
+                        self.text_area_password_inscription_active = False
+                        self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = True
+                        self.text_area_chat_public_active = False
+                    elif self.is_mouse_inside_text_area(self.text_area_chat_public_rect) and self.screen_display.get_state() == 4:
+                        self.text_area_email_active = False
+                        self.text_area_password_active = False
+                        self.text_area_name_active = False
+                        self.text_area_surname_active = False
+                        self.text_area_password_inscription_active = False
+                        self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = True
                     
             if self.screen_display.get_state() == 1:
                 self.screen_display.screen_connection()

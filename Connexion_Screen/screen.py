@@ -1,14 +1,14 @@
 import pygame
-import Connexion_Screen as cs
+import Tools as tools
 
 class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
         self.state = 1
-        self.picture = cs.Picture(self.display)
-        self.text = cs.Text(self.display)
-        self.button = cs.Button(self.display)
+        self.picture = tools.Picture(self.display)
+        self.text = tools.Text(self.display)
+        self.button = tools.Button(self.display)
         
     def update(self):
         pygame.display.update()
@@ -21,7 +21,7 @@ class Connexion_Screen_display():
     def main_screen(self):
         self.screen.fill("gray23")
         self.picture.draw_picture("Asset\image\Serveur_Discord.png", 200, 20, 100, 400)
-        self.button.draw_button(200, 140, 200, 50, "gray23", "Connexion", "ghostwhite", 15, self.go_screen_connexion)
+        self.button.draw_button(200, 140, 200, 50, "gray23", "Connexion", "ghostwhite", 15, self.go_screen_connexion())
         self.button.draw_button(400, 140, 200, 50, "gray23", "Inscription", "ghostwhite", 15, self.go_screen_inscription)
         
     def screen_connection(self):
@@ -29,7 +29,8 @@ class Connexion_Screen_display():
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
         self.text.draw_text("Mot de Passe :", "ghostwhite",15, 250, 280)
         self.button.draw_button(290, 350, 200, 50, "gray23", "Connexion", "ghostwhite", 17)
-        self.text.area_text(250, 220, 200, 30, "ghostwhite")
+        self.text.area_text(250, 240, 300, 25, "ghostwhite")
+        self.text.area_text(250, 300, 300, 25, "ghostwhite")
         self.update()
 
     def screen_inscription(self):
@@ -39,6 +40,10 @@ class Connexion_Screen_display():
         self.text.draw_text("Nom :","ghostwhite", 15, 250, 340)
         self.text.draw_text("Prénom :","ghostwhite", 15, 250, 400)
         self.button.draw_button(290, 470, 200, 50, "gray23", "Inscription", "ghostwhite", 17)
+        self.text.area_text(250, 240, 300, 25, "ghostwhite")
+        self.text.area_text(250, 300, 300, 25, "ghostwhite")
+        self.text.area_text(250, 360, 300, 25, "ghostwhite")
+        self.text.area_text(250, 420, 300, 25, "ghostwhite")
         self.update()
         
     

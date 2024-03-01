@@ -4,7 +4,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 1
+        self.state = 3
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -41,11 +41,13 @@ class Connexion_Screen_display():
         self.main_screen()
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
         self.text.draw_text("Mot de Passe :", "ghostwhite",15, 250, 280)
-        self.text.draw_text("Connexion","ghostwhite", 20, 350, 480)
+        self.text.draw_text("Connexion","ghostwhite", 20, 350, 350)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_email_connexion)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_email_connexion),(250,240))
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_password_connexion)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_password_connexion),(250,300))
+        if self.display.user_found == False:
+            self.text.draw_text("Adresse email ou mot de passe incorrect","red", 15, 250, 400)
         self.update()
 
     def screen_inscription(self):
@@ -72,7 +74,7 @@ class Connexion_Screen_display():
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_private_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_private),(200,550))
         self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
-        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
+        self.text.draw_text("Envoyer","ghostwhite", 15,710, 550)
         self.text.draw_text("Appel","Black", 15, 680, 110)
         self.update()
 
@@ -80,7 +82,8 @@ class Connexion_Screen_display():
         self.main_message_screen()
         self.text.draw_text("Message :","ghostwhite", 15, 150, 520)
         self.shapes.draw_rect(50, 100, 700, 400, "ghostwhite")
-        self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
+        # self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
+        self.text.draw_text("Envoyer","ghostwhite", 15,670, 550)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_public_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_public),(150,550))
         self.update()

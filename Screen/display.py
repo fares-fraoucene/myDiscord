@@ -2,6 +2,7 @@ import pygame
 import Tools as tools
 import Screen as cs
 import Base_sql as base
+import time
 
 
 class Display():
@@ -29,6 +30,7 @@ class Display():
         self.text_area_chat_private_rect = pygame.Rect(200, 550, 500, 25)
         self.text_area_chat_public_rect = pygame.Rect(150, 550, 500, 25)
         self.base = base
+        self.user_found = True
         
     def run(self):
         while True:
@@ -38,69 +40,62 @@ class Display():
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.pos = pygame.mouse.get_pos()
+                    
                     if 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500 and self.screen_display.get_state() == 2:
                         self.base.inserer_utilisateur(self.text_area_surname_inscription, self.text_area_name_inscription, self.text_area_email_insription, self.text_area_password_inscription)
                         self.text_area_surname_inscription = ''
                         self.text_area_name_inscription = ''
                         self.text_area_email_insription = ''
                         self.text_area_password_inscription = ''
-                    elif 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500 and self.screen_display.get_state() == 1:
+                    elif 350 <= self.pos[0] <= 450 and 350 <= self.pos[1] <= 380 and self.screen_display.get_state() == 1:
                         if self.base.check_user(self.text_area_email_connexion, self.text_area_password_connexion):
                             self.screen_display.go_screen_private_message()
+                            self.text_area_email_connexion = ''
+                            self.text_area_password_connexion = ''
+                            self.user_found = True
                         else:
-                            print('Utilisateur non trouvé')
+                            self.user_found = False
+                    elif self.screen_display.get_state() == 3 and 710 <= self.pos[0] <= 740 and 550 <= self.pos[1] <= 575:
+                        self.base.addmessage_prive(self.text_area_chat_private)
+                        self.text_area_chat_private = ''
+                    elif self.screen_display.get_state() == 4 and 670 <= self.pos[0] <= 730 and 550 <= self.pos[1] <= 561:
+                        self.base.addmessage_publique(self.text_area_chat_public)
+                        self.text_area_chat_public = ''
+                        
                 if event.type == pygame.KEYDOWN:
                     if self.text_area_email_active == True and self.screen_display.get_state() == 1:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_email_connexion)
-                            self.text_area_email_connexion = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_email_connexion = self.text_area_email_connexion[:-1]
                         else:
                             self.text_area_email_connexion += event.unicode
                     elif self.text_area_password_active == True and self.screen_display.get_state() == 1:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_password_connexion)
-                            self.text_area_password_connexion = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_password_connexion = self.text_area_password_connexion[:-1]
                         else:
                             self.text_area_password_connexion += event.unicode
                     elif self.text_area_name_active == True and self.screen_display.get_state() == 2:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_name_inscription)
-                            self.text_area_name_inscription = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_name_inscription = self.text_area_name_inscription[:-1]
                         else:
                             self.text_area_name_inscription += event.unicode
                     elif self.text_area_surname_active == True and self.screen_display.get_state() == 2:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_surname_inscription)
-                            self.text_area_surname_inscription = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_surname_inscription = self.text_area_surname_inscription[:-1]
                         else:
                             self.text_area_surname_inscription += event.unicode
                     elif self.text_area_password_inscription_active == True and self.screen_display.get_state() == 2:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_password_inscription)
-                            self.text_area_password_inscription = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_password_inscription = self.text_area_password_inscription[:-1]
                         else:
                             self.text_area_password_inscription += event.unicode
                     elif self.text_area_email_inscription_active == True and self.screen_display.get_state() == 2:
-                        if event.key == pygame.K_RETURN:
-                            print(self.text_area_email_insription)
-                            self.text_area_email_insription = ''
-                        elif event.key == pygame.K_BACKSPACE:
+                        if event.key == pygame.K_BACKSPACE:
                             self.text_area_email_insription = self.text_area_email_insription[:-1]
                         else:
                             self.text_area_email_insription += event.unicode
                     elif self.text_area_chat_private_active == True and self.screen_display.get_state() == 3:
                         if event.key == pygame.K_RETURN:
-                            print(self.text_area_chat_private)
+                            self.base.addmessage_prive(self.text_area_chat_private)
                             self.text_area_chat_private = ''
                         elif event.key == pygame.K_BACKSPACE:
                             self.text_area_chat_private = self.text_area_chat_private[:-1]
@@ -108,7 +103,7 @@ class Display():
                             self.text_area_chat_private += event.unicode
                     elif self.text_area_chat_public_active == True and self.screen_display.get_state() == 4:
                         if event.key == pygame.K_RETURN:
-                            print(self.text_area_chat_public)
+                            self.base.addmessage_publique(self.text_area_chat_public)
                             self.text_area_chat_public = ''
                         elif event.key == pygame.K_BACKSPACE:
                             self.text_area_chat_public = self.text_area_chat_public[:-1]
@@ -203,11 +198,15 @@ class Display():
     def is_mouse_inside_text_area(self, rect):
         self.mouse_pos = pygame.mouse.get_pos()
         return rect.collidepoint(self.mouse_pos)
-
-
-            
-            
-            
-            
-    
-    
+    def afficher_donnees(self,donnees):
+        taille_case_x = 110
+        taille_case_y = 50
+        decalage_x, decalage_y = 200, 130
+        for i, ligne in enumerate(donnees):
+            for j, valeur in enumerate(ligne):
+                x = j * taille_case_x + decalage_x
+                y = i * taille_case_y + decalage_y
+                pygame.draw.rect(self.screen, "white", (x, y, taille_case_x, taille_case_y))
+                font = pygame.font.Font(None, 20)
+                texte = font.render(str(valeur), True, "black")
+                self.screen.blit(texte, (x + 20, y + 20))

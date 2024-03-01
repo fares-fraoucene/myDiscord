@@ -1,15 +1,16 @@
 import pygame
 import Tools as tools
+import Base_sql as base
 class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 3
+        self.state = 1
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
         self.shapes = tools.Shapes(self.display)
-
+        self.base = base
         
     def update(self):
         pygame.display.update()
@@ -86,6 +87,19 @@ class Connexion_Screen_display():
         self.text.draw_text("Envoyer","ghostwhite", 15,670, 550)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_public_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_public),(150,550))
+        self.afficher_donnees(self.base.displaymessage())
         self.update()
+    def afficher_donnees(self,donnees):
+        taille_case_x = 110
+        taille_case_y = 50
+        decalage_x, decalage_y = 200, 130
+        for i, ligne in enumerate(donnees):
+            for j, valeur in enumerate(ligne):
+                x = j * taille_case_x + decalage_x
+                y = i * taille_case_y + decalage_y
+                pygame.draw.rect(self.screen, "white", (x, y, taille_case_x, taille_case_y))
+                font = pygame.font.Font(None, 20)
+                texte = font.render(str(valeur), True, "black")
+                self.screen.blit(texte, (x + 20, y + 20))
         
     

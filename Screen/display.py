@@ -56,11 +56,13 @@ class Display():
                         else:
                             self.user_found = False
                     elif self.screen_display.get_state() == 3 and 710 <= self.pos[0] <= 740 and 550 <= self.pos[1] <= 575:
-                        self.base.addmessage_prive(self.text_area_chat_private)
-                        self.text_area_chat_private = ''
+                        if self.text_area_chat_private != '':
+                            self.base.addmessage_prive(self.text_area_chat_private)
+                            self.text_area_chat_private = ''
                     elif self.screen_display.get_state() == 4 and 670 <= self.pos[0] <= 730 and 550 <= self.pos[1] <= 561:
-                        self.base.addmessage_publique(self.text_area_chat_public)
-                        self.text_area_chat_public = ''
+                        if self.text_area_chat_public != '':
+                            self.base.addmessage_publique(self.text_area_chat_public)
+                            self.text_area_chat_public = ''
                         
                 if event.type == pygame.KEYDOWN:
                     if self.text_area_email_active == True and self.screen_display.get_state() == 1:
@@ -95,16 +97,18 @@ class Display():
                             self.text_area_email_insription += event.unicode
                     elif self.text_area_chat_private_active == True and self.screen_display.get_state() == 3:
                         if event.key == pygame.K_RETURN:
-                            self.base.addmessage_prive(self.text_area_chat_private)
-                            self.text_area_chat_private = ''
+                            if self.text_area_chat_private != '':
+                                self.base.addmessage_prive(self.text_area_chat_private)
+                                self.text_area_chat_private = ''
                         elif event.key == pygame.K_BACKSPACE:
                             self.text_area_chat_private = self.text_area_chat_private[:-1]
                         else:
                             self.text_area_chat_private += event.unicode
                     elif self.text_area_chat_public_active == True and self.screen_display.get_state() == 4:
                         if event.key == pygame.K_RETURN:
-                            self.base.addmessage_publique(self.text_area_chat_public)
-                            self.text_area_chat_public = ''
+                            if self.text_area_chat_public != '':
+                                self.base.addmessage_publique(self.text_area_chat_public)
+                                self.text_area_chat_public = ''
                         elif event.key == pygame.K_BACKSPACE:
                             self.text_area_chat_public = self.text_area_chat_public[:-1]
                         else:
@@ -198,15 +202,3 @@ class Display():
     def is_mouse_inside_text_area(self, rect):
         self.mouse_pos = pygame.mouse.get_pos()
         return rect.collidepoint(self.mouse_pos)
-    def afficher_donnees(self,donnees):
-        taille_case_x = 110
-        taille_case_y = 50
-        decalage_x, decalage_y = 200, 130
-        for i, ligne in enumerate(donnees):
-            for j, valeur in enumerate(ligne):
-                x = j * taille_case_x + decalage_x
-                y = i * taille_case_y + decalage_y
-                pygame.draw.rect(self.screen, "white", (x, y, taille_case_x, taille_case_y))
-                font = pygame.font.Font(None, 20)
-                texte = font.render(str(valeur), True, "black")
-                self.screen.blit(texte, (x + 20, y + 20))

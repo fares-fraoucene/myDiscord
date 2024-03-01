@@ -38,12 +38,17 @@ class Display():
                     quit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     self.pos = pygame.mouse.get_pos()
-                    if 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500:
+                    if 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500 and self.screen_display.get_state() == 2:
                         self.base.inserer_utilisateur(self.text_area_surname_inscription, self.text_area_name_inscription, self.text_area_email_insription, self.text_area_password_inscription)
                         self.text_area_surname_inscription = ''
                         self.text_area_name_inscription = ''
                         self.text_area_email_insription = ''
                         self.text_area_password_inscription = ''
+                    elif 350 <= self.pos[0] <= 450 and 470 <= self.pos[1] <= 500 and self.screen_display.get_state() == 1:
+                        if self.base.check_user(self.text_area_email_connexion, self.text_area_password_connexion):
+                            self.screen_display.go_screen_private_message()
+                        else:
+                            print('Utilisateur non trouvé')
                 if event.type == pygame.KEYDOWN:
                     if self.text_area_email_active == True and self.screen_display.get_state() == 1:
                         if event.key == pygame.K_RETURN:

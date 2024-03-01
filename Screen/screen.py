@@ -41,7 +41,7 @@ class Connexion_Screen_display():
         self.main_screen()
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
         self.text.draw_text("Mot de Passe :", "ghostwhite",15, 250, 280)
-        self.button.draw_button(290, 350, 200, 50, "gray23", "Connexion", "ghostwhite", 17, self.go_screen_private_message)
+        self.text.draw_text("Connexion","ghostwhite", 20, 350, 480)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_email_connexion)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_email_connexion),(250,240))
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_rect_password_connexion)

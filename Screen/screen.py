@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 1
+        self.state = 4
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -37,7 +37,6 @@ class Connexion_Screen_display():
         self.button.draw_button(450, 30, 200, 50, "gray23", "Message Général", "ghostwhite", 15, self.go_screen_public_message)
         self.button.draw_button(30, 540, 100, 50, "gray23", "Déconnexion", "ghostwhite", 15, self.go_screen_connexion)
         
-
     def screen_connection(self):
         self.main_screen()
         self.text.draw_text("Adresse email :","ghostwhite", 15, 250, 220)
@@ -83,23 +82,20 @@ class Connexion_Screen_display():
         self.main_message_screen()
         self.text.draw_text("Message :","ghostwhite", 15, 150, 520)
         self.shapes.draw_rect(50, 100, 700, 400, "ghostwhite")
-        # self.button.draw_button(670, 535, 100, 50, "gray23", "Envoyer", "ghostwhite", 17, None)
         self.text.draw_text("Envoyer","ghostwhite", 15,670, 550)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_public_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_public),(150,550))
         self.afficher_donnees(self.base.displaymessage())
         self.update()
+
     def afficher_donnees(self,donnees):
         taille_case_x = 110
-        taille_case_y = 50
-        decalage_x, decalage_y = 200, 130
+        taille_case_y = 40
+        decalage_x, decalage_y = 110, 110
         for i, ligne in enumerate(donnees):
             for j, valeur in enumerate(ligne):
                 x = j * taille_case_x + decalage_x
                 y = i * taille_case_y + decalage_y
-                pygame.draw.rect(self.screen, "white", (x, y, taille_case_x, taille_case_y))
                 font = pygame.font.Font(None, 20)
                 texte = font.render(str(valeur), True, "black")
                 self.screen.blit(texte, (x + 20, y + 20))
-        
-    

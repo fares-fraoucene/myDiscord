@@ -50,7 +50,6 @@ class Display():
                     elif 350 <= self.pos[0] <= 450 and 350 <= self.pos[1] <= 380 and self.screen_display.get_state() == 1:
                         if self.base.check_user(self.text_area_email_connexion, self.text_area_password_connexion):
                             self.screen_display.go_screen_private_message()
-                            self.text_area_email_connexion = ''
                             self.text_area_password_connexion = ''
                             self.user_found = True
                         else:
@@ -61,7 +60,7 @@ class Display():
                             self.text_area_chat_private = ''
                     elif self.screen_display.get_state() == 4 and 670 <= self.pos[0] <= 730 and 550 <= self.pos[1] <= 561:
                         if self.text_area_chat_public != '':
-                            self.base.addmessage_publique(self.text_area_chat_public)
+                            self.base.addmessage_publique(self.base.check_user_id(self.text_area_email_connexion),self.text_area_chat_public)
                             self.text_area_chat_public = ''
                         
                 if event.type == pygame.KEYDOWN:
@@ -107,7 +106,7 @@ class Display():
                     elif self.text_area_chat_public_active == True and self.screen_display.get_state() == 4:
                         if event.key == pygame.K_RETURN:
                             if self.text_area_chat_public != '':
-                                self.base.addmessage_publique(self.text_area_chat_public)
+                                self.base.addmessage_publique(self.base.check_user_id(self.text_area_email_connexion),self.text_area_chat_public)
                                 self.text_area_chat_public = ''
                         elif event.key == pygame.K_BACKSPACE:
                             self.text_area_chat_public = self.text_area_chat_public[:-1]

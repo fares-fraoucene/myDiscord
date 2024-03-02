@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 4
+        self.state = 1
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -86,12 +86,13 @@ class Connexion_Screen_display():
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_public_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_public),(150,550))
         self.afficher_donnees(self.base.displaymessage())
+        self.afficher_donnees_public(self.base.get_username_from_message_id())
         self.update()
 
     def afficher_donnees(self,donnees):
         taille_case_x = 110
-        taille_case_y = 40
-        decalage_x, decalage_y = 110, 110
+        taille_case_y = 20
+        decalage_x, decalage_y = 100, 110
         for i, ligne in enumerate(donnees):
             for j, valeur in enumerate(ligne):
                 x = j * taille_case_x + decalage_x
@@ -99,3 +100,16 @@ class Connexion_Screen_display():
                 font = pygame.font.Font(None, 20)
                 texte = font.render(str(valeur), True, "black")
                 self.screen.blit(texte, (x + 20, y + 20))
+
+    def afficher_donnees_public(self, donnees):
+        taille_case_x = 110
+        taille_case_y = 20
+        decalage_x, decalage_y = 50, 110
+        for i, ligne in enumerate(donnees):
+            for j, valeur in enumerate(ligne):
+                x = j * taille_case_x + decalage_x
+                y = i * taille_case_y + decalage_y
+                font = pygame.font.Font(None, 20)
+                texte = font.render((f"{valeur} :"), True, "black")
+                self.screen.blit(texte, (x + 20, y + 20))
+

@@ -13,7 +13,7 @@ def displaymessage():
 def get_username_from_message_id():
     conn = mysql.connector.connect(host="localhost", user="root", password="toto", database="my_Discord")
     cursor = conn.cursor()
-    cursor.execute("SELECT DISTINCT u.prenom FROM message_public m INNER JOIN utilisateurs u ON m.id_utilisateur = u.id")
+    cursor.execute("SELECT u.prenom FROM message_public m INNER JOIN utilisateurs u ON m.id_utilisateur = u.id")
     usernames = cursor.fetchall()
 
     cursor.close()

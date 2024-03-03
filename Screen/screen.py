@@ -85,8 +85,8 @@ class Connexion_Screen_display():
         self.text.draw_text("Envoyer","ghostwhite", 15,670, 550)
         pygame.draw.rect(self.screen,"ghostwhite", self.display.text_area_chat_public_rect)
         self.screen.blit(self.text.draw_text_area_text(self.display.text_area_chat_public),(150,550))
-        self.afficher_donnees(self.base.displaymessage())
-        self.afficher_donnees_public(self.base.get_username_from_message_id())
+        # self.afficher_donnees(self.base.displaymessage())
+        self.afficher_donnees_public(self.base.get_username_from_message_id(), self.base.displaymessage())
         self.update()
 
     def afficher_donnees(self,donnees):
@@ -101,15 +101,16 @@ class Connexion_Screen_display():
                 texte = font.render(str(valeur), True, "black")
                 self.screen.blit(texte, (x + 20, y + 20))
 
-    def afficher_donnees_public(self, donnees):
+    def afficher_donnees_public(self, donnees, messages):
         taille_case_x = 110
         taille_case_y = 20
         decalage_x, decalage_y = 50, 110
-        for i, ligne in enumerate(donnees):
-            for j, valeur in enumerate(ligne):
+        for i, (ligne, message) in enumerate(zip(donnees, messages)):
+            for j, (valeur, valeur_message) in enumerate(zip(ligne, message)):
                 x = j * taille_case_x + decalage_x
                 y = i * taille_case_y + decalage_y
                 font = pygame.font.Font(None, 20)
-                texte = font.render((f"{valeur} :"), True, "black")
+                texte = font.render(f"{valeur} : {valeur_message}", True, "black")
                 self.screen.blit(texte, (x + 20, y + 20))
+
 

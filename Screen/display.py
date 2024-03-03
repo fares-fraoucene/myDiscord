@@ -19,14 +19,14 @@ class Display():
         self.text_area_surname_inscription = ''
         self.text_area_password_inscription = ''
         self.text_area_email_insription = ''
+        self.text_area_chat_private = ''
+        self.text_area_chat_public = ''
         self.text_area_rect_email_connexion = pygame.Rect(250, 240, 300, 25)
         self.text_area_rect_password_connexion = pygame.Rect(250, 300, 300, 25)
         self.text_area_rect_name_inscription = pygame.Rect(250, 360, 300, 25)
         self.text_area_rect_surname_inscription = pygame.Rect(250, 420, 300, 25)
         self.text_area_rect_password_inscription = pygame.Rect(250, 300, 300, 25)
         self.text_area_rect_email_inscription = pygame.Rect(250, 240, 300, 25)
-        self.text_area_chat_private = ''
-        self.text_area_chat_public = ''
         self.text_area_chat_private_rect = pygame.Rect(200, 550, 500, 25)
         self.text_area_chat_public_rect = pygame.Rect(150, 550, 500, 25)
         self.base = base

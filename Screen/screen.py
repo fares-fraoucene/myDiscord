@@ -5,7 +5,7 @@ class Connexion_Screen_display():
     def __init__(self,display):
         self.display = display
         self.screen = self.display.screen
-        self.state = 1
+        self.state = 3
         self.picture = tools.Picture(self.display)
         self.text = tools.Text(self.display)
         self.button = tools.Button(self.display)
@@ -76,6 +76,14 @@ class Connexion_Screen_display():
         self.shapes.draw_rect(200, 100, 550, 400, "ghostwhite")
         self.text.draw_text("Envoyer","ghostwhite", 15,710, 550)
         self.text.draw_text("Appel","Black", 15, 680, 110)
+        self.shapes.draw_line((20, 150), (160, 150), "gray23", 2)
+        self.shapes.draw_line((20, 200), (160, 200), "gray23", 2)
+        self.shapes.draw_line((20, 250), (160, 250), "gray23", 2)
+        self.shapes.draw_line((20, 300), (160, 300), "gray23", 2)
+        self.shapes.draw_line((20, 350), (160, 350), "gray23", 2)
+        self.shapes.draw_line((20, 400), (160, 400), "gray23", 2)
+        self.shapes.draw_line((20, 450), (160, 450), "gray23", 2)
+
         self.update()
 
     def public_message(self):

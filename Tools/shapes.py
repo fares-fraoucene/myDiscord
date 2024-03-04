@@ -8,3 +8,5 @@ class Shapes:
         pygame.draw.rect(self.screen, color, (x, y, width, height))
     def draw_circle(self, x, y, radius, color):
         pygame.draw.circle(self.screen, color, (x, y), radius)
+    def draw_line(self, start_pos, end_pos, color, width):
+        pygame.draw.line(self.screen, color, start_pos, end_pos, width)

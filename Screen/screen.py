@@ -98,6 +98,7 @@ class Connexion_Screen_display():
         # self.afficher_donnees(self.base.displaymessage())
         self.afficher_donnees_public(self.base.get_username_from_message_id(), self.base.displaymessage())
         self.update()
+        
     def friends(self):
         self.screen.fill("gray23")
         self.button.draw_button(30, 540, 100, 50, "gray23", "<- Retour", "ghostwhite", 15, self.go_screen_private_message)
@@ -106,6 +107,7 @@ class Connexion_Screen_display():
         self.text.draw_text("Saisir prénom d'un ami :","ghostwhite", 15, 250, 210)
         self.text.draw_text("Ajouter","ghostwhite", 15, 570, 245)
         self.update()
+        
 
 
 
@@ -132,5 +134,3 @@ class Connexion_Screen_display():
                 font = pygame.font.Font(None, 20)
                 texte = font.render(f"{valeur} : {valeur_message}", True, "black")
                 self.screen.blit(texte, (x + 20, y + 20))
-
-

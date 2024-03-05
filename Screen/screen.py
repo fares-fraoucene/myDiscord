@@ -11,6 +11,7 @@ class Connexion_Screen_display():
         self.button = tools.Button(self.display)
         self.shapes = tools.Shapes(self.display)
         self.base = base
+        self.ami = []
         
     def update(self):
         pygame.display.update()

@@ -16,7 +16,7 @@ def ajouter_ami(id_utilisateur, prenom_ami):
 def display_ami(id_utilisateur):
     conn = mysql.connector.connect(host = "localhost", user = "root", password = "toto", database = "my_Discord")
     cursor = conn.cursor()
-    cursor.execute("SELECT DISTINCT utilisateurs.prenom FROM utilisateurs INNER JOIN amis ON utilisateurs.prenom = amis.prenom_ami WHERE amis.id_utilisateur = %s", (id_utilisateur))
+    cursor.execute("SELECT DISTINCT utilisateurs.prenom FROM utilisateurs INNER JOIN amis ON utilisateurs.prenom = amis.prenom_ami WHERE amis.id_utilisateur = %s", (id_utilisateur,))
     amis = cursor.fetchall()
     cursor.close()
     conn.close()

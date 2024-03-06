@@ -3,17 +3,23 @@ import mysql.connector
 def displaymessage():
     conn = mysql.connector.connect(host="localhost", user="root", password="toto", database="my_Discord")
     cursor = conn.cursor()
-    cursor.execute("SELECT content FROM message_public")
+    cursor.execute("SELECT content FROM message_public ORDER BY date_creation ASC")    
     messages = cursor.fetchall()
     cursor.close()
     conn.close()
     return messages
-
+def display_time_message_privé():
+    conn = mysql.connector.connect(host="localhost", user="root", password="toto", database="my_Discord")
+    cursor = conn.cursor()
+    cursor.execute("SELECT date_creation FROM message_public ORDER BY date_creation ASC")
+    messages = cursor.fetchall()
+    cursor.close()
+    conn.close()
 
 def get_username_from_message_id():
     conn = mysql.connector.connect(host="localhost", user="root", password="toto", database="my_Discord")
     cursor = conn.cursor()
-    cursor.execute("SELECT u.prenom FROM message_public m INNER JOIN utilisateurs u ON m.id_utilisateur = u.id")
+    cursor.execute("SELECT u.prenom FROM message_public m INNER JOIN utilisateurs u ON m.id_utilisateur = u.id ORDER BY m.date_creation ASC")
     usernames = cursor.fetchall()
 
     cursor.close()

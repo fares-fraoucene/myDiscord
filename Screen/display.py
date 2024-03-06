@@ -216,6 +216,16 @@ class Display():
                         self.text_area_chat_private_active = False
                         self.text_area_chat_public_active = False
                         self.text_area_add_friends_active = True
+                    else:
+                        self.text_area_email_active = False
+                        self.text_area_password_active = False
+                        self.text_area_name_active = False
+                        self.text_area_surname_active = False
+                        self.text_area_password_inscription_active = False
+                        self.text_area_email_inscription_active = False
+                        self.text_area_chat_private_active = False
+                        self.text_area_chat_public_active = False
+                        self.text_area_add_friends_active = False
                     
             if self.screen_display.get_state() == 1:
                 self.screen_display.screen_connection()
